@@ -1,0 +1,64 @@
+<c-col xs="12">
+    <c-card class="mb-4">
+      <c-card-header>
+        <strong>New Article</strong>
+      </c-card-header>
+      <c-card-body>
+          <form cForm [formGroup]="newarticleform">
+            <div class="mb-3">
+              <label cLabel for="exampleFormControlInput1">Title</label>
+              <input cFormControl
+                     id="exampleFormControlInput1"
+                     
+                     type="text"
+                     formControlName="title"
+              />
+            </div>
+            <div class="mb-3">
+              <label cLabel for="exampleFormControlTextarea1">Description</label>
+              <textarea cFormControl formControlName="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="mb-3">
+                  <button class="btn btn-primary" [disabled]="newarticleform.invalid" (click)="create()">Create</button>
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <button class="btn btn-info" [disabled]="newarticleform.invalid" type="reset" (click)="addNewArticle()">Add</button>
+                </div>
+              </div>
+            </div>
+          </form>
+      </c-card-body>
+    </c-card>
+  </c-col>
+
+
+  <c-col xs="12">
+    <c-card class="mb-4" *ngIf="showAddedArticleList">
+      <c-card-header>
+        <strong>Add Article List</strong>
+      </c-card-header>
+      <c-card-body>
+        <table cTable class="col-md-12 col-lg-12 ">
+          <thead cTableColor="dark">
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Description</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let article of newArticleArray; let i = index">
+              <td>{{ article.title }}</td>
+              <td> {{ article.description | slice:0:40}}</td>
+              <td><a (click)="removeArticle(i)"><svg cIcon name="cilTrash"></svg></a></td>
+            </tr>
+          </tbody>
+          </table>
+          <button class="btn btn-primary" (click)="createMultipleArticle()">Create</button>
+      </c-card-body>
+    </c-card>
+  </c-col>

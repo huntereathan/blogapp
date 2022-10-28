@@ -1,0 +1,36 @@
+<div class="fade-in">
+    <c-card class="mb-4">
+      <c-card-header>
+        Detailed Article
+      </c-card-header>
+      <c-card-body>
+        <div *ngIf="eacharticle.articleupdated">
+          <c-alert [(visible)]="visible"
+         [dismissible]="dismissible"
+         color="success"
+         fade
+         *ngIf="visible">
+          <strong>Article Updated Successfully</strong>
+        </c-alert>
+        </div>
+        
+        
+        <h1>{{ article.title | uppercase }}</h1>
+        <div class="d-md-flex justify-content-md-end">
+          <!-- <button cButton color="primary" class="me-md-2">Button</button>
+          <button cButton color="primary">Button</button> -->
+          <button cButton color="success" shape="rounded-pill"  *ngIf="likebutton" (click)="likedfunc()">Like</button>
+          <button cButton color="danger" shape="rounded-pill" *ngIf="unlikebutton" (click)="unlikefunc()">unlike</button>
+        </div>
+        <span><a [routerLink]="['/users/userdetail', article.author_id._id]">{{ article.author_id.username | uppercase }}</a></span>
+        <span> ,{{ article.createdAt| date}} </span>
+        <span>, Likes {{likecount}} </span>
+        <p> {{ article.description }} </p>
+        <div class="comments">
+          <p> <strong>{{ noofcomments }} Comments</strong> </p>
+          <app-comments  (noofComment)="getNoofComments($event)"  [article_id]="id"></app-comments>
+        </div>
+      </c-card-body>
+    </c-card>
+  </div>
+  

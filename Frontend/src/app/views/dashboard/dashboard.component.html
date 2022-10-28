@@ -1,0 +1,58 @@
+<div class="float-end ">
+  <a (click)="toggleCollapse()" cButton class="me-1" color="primary">Filter</a>
+</div>
+<!-- <button (click)="toggleCollapse()" cButton class="me-1" color="primary">Button</button> -->
+<c-card class="mt-3" [visible]="visible" cCollapse>
+<c-card-body>
+  <c-row>
+    <c-col lg="5">
+      <form #form="ngForm" (ngSubmit)="onApplyFilter(form)" >
+        <div class="row">
+          <div class="col">
+            <label cLabel for="fromDate">From Date</label>
+            <input cFormControl
+                    id="fromDate"
+                    type="date"
+                    ngModel
+                    name="startDate"
+            />
+          </div>
+          <div class="col">
+            <label cLabel for="toDate">To Date</label>
+            <input cFormControl
+                    id="toDate"
+                    type="date"
+                    ngModel
+                    name="endDate"
+            />
+          </div>
+          <div class="col">
+              <button class="btn btn-primary" type="submit">Apply</button>
+          </div>
+        </div>
+        
+      </form>
+    </c-col>
+  </c-row>
+</c-card-body>
+</c-card>
+
+
+<div class="row ">
+  <div class="col" *ngFor="let each of articles">
+    <div class="card mt-4" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title"> {{ each.title | titlecase}} </h5>
+        <h6 class="card-subtitle mb-2 text-muted"> {{ each.createdAt | date}} </h6>
+        <p class="card-text">{{ each.description | slice:0:40}}</p>
+        <!-- <a href="#" class="card-link">Card link</a> -->
+        <a  class="card-link" (click)=" detail(each._id)" >Continue Reading</a>
+      </div>
+  </div>
+  </div>
+</div>
+
+
+
+
+               

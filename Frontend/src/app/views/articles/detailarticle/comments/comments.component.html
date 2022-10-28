@@ -1,0 +1,70 @@
+<section style="background-color: #eee;">
+    <div class="container my-5 py-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-12 col-lg-10 col-xl-8">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="py-3 border-0" style="background-color: #f8f9fa;">
+                            <!-- <div class="d-flex flex-start w-100"> -->
+                                <!-- <img class="rounded-circle shadow-1-strong me-3"
+                                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="40"
+                                height="40" /> -->
+                                <form (ngSubmit)="oncommentsubmit(com)" #com="ngForm">
+                                    <div class="form-outline w-100">
+                                        <textarea class="form-control" 
+                                                id="textAreaExample" 
+                                                rows="4"
+                                                ngModel
+                                                style="background: #fff;"
+                                                [(ngModel)]="editedcommmet"
+                                                name="comment"></textarea>
+                                        <!-- <label class="form-label" for="textAreaExample">Message</label> -->
+                                    </div> 
+                                    <div class="float-end mt-2 pt-1">
+                                        <button type="button" class="btn btn-primary btn-sm" type="submit" [disabled]="(editedcommmet==='')" *ngIf="postbutton">Post comment</button>
+                                        <!-- <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button> -->
+                                    </div>
+                                </form>
+                                <div class="float-end mt-2 pt-1">
+                                    <button type="button" class="btn btn-primary btn-sm" *ngIf="updatebutton"  [disabled]="(editedcommmet==='')" (click)="updatecom()">Update comment</button>
+                                    <!-- <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button> -->
+                                </div>
+                            <!-- </div> -->
+                        </div>
+                        <br>
+                        <br>
+                        <div *ngFor="let comment of articlecomment">
+                            <div class="d-flex flex-start align-items-center">
+                                <!-- <img class="rounded-circle shadow-1-strong me-3"
+                                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="60"
+                                height="60" /> -->
+                                <div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6 class="fw-bold text-primary mb-1">{{ comment.user_id.username }}</h6>
+                                        </div>
+                                        <div class="col">
+                                            <button class="btn btn-outline-primary btn-sm" *ngIf="(showdel === comment.user_id._id)" (click)="getsinglecom(comment._id)">Edit</button>
+                                        </div>
+                                        <div class="col">
+                                            <button class="btn btn-outline-danger btn-sm" *ngIf="(showdel === comment.user_id._id)" (click)="delcom(comment._id)">Delete</button>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted small mb-0">
+                                        {{ comment.createdAt | date }}
+                                    </p>
+                                </div>
+                            </div>
+            
+                            <p class="mt-3 mb-4 pb-2">
+                                {{ comment.comment }}
+                            </p>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>

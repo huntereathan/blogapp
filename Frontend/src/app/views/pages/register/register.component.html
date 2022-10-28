@@ -1,0 +1,74 @@
+<div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+  <c-container>
+    <c-row class="justify-content-center">
+      <c-col lg="7" md="9" xl="6">
+        <c-card class="mx-4">
+          <c-card-body class="p-4">
+            <form cForm [formGroup]="myForm">
+              <h1>Register</h1>
+              <p class="text-medium-emphasis">Create your account</p>
+              <div class="alert alert-danger" *ngIf="error">
+                <p>{{errorMessage}}</p>
+              </div>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilUser"></svg>
+                </span>
+                <input autoComplete="name" formControlName="username" cFormControl placeholder="Username" />
+                <span
+                *ngIf="(emptyerrorshow && myForm.controls['username'].status === 'INVALID') ||(!myForm.get('username').valid && myForm.get('username').touched)" 
+                class="help-block">Please enter a valid Username</span>
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>@</span>
+                <input autoComplete="email" formControlName="email" cFormControl placeholder="Email" />
+                <span
+                *ngIf="(emptyerrorshow && myForm.controls['email'].status === 'INVALID') ||(!myForm.get('email').valid && myForm.get('email').touched)" 
+                class="help-block">Please enter a valid Email</span>
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <span cInputGroupText><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
+                  <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/>
+                  <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                </svg></span>
+                <input autoComplete="mobileno" formControlName="mobileno" cFormControl placeholder="MobileNo" />
+                <span
+                *ngIf="(emptyerrorshow && myForm.controls['mobileno'].status === 'INVALID') ||(!myForm.get('mobileno').valid && myForm.get('mobileno').touched)" 
+                class="help-block">Please enter mobileno</span>
+              </c-input-group>
+               <c-input-group class="mb-3">
+                <span class="input-group-text">About</span>
+                <textarea autoComplete="about" formControlName="about" cFormControl placeholder="About" type="text"></textarea>
+                <!-- <span
+                *ngIf="!myForm.get('about').valid && myForm.get('about').touched" 
+                class="help-block">Please enter about</span> -->
+              </c-input-group>
+              <c-input-group class="mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilLockLocked"></svg>
+                </span>
+                <input autoComplete="new-password" formControlName="password" cFormControl placeholder="Password" type="password" />
+                <span
+                *ngIf="(emptyerrorshow && myForm.controls['password'].status === 'INVALID') || (!myForm.get('password').valid && myForm.get('password').touched)" 
+                class="help-block">Please enter password</span>
+              </c-input-group>
+              <!-- <c-input-group class="mb-4">
+                <span cInputGroupText>
+                  <svg cIcon name="cilLockLocked"></svg>
+                </span>
+                <input autoComplete="new-password" cFormControl placeholder="Repeat password" type="password" #nameInput/>
+                <span
+                *ngIf="(emptyerrorshow && issubmitted) || repassword" 
+                class="help-block">Please re-enter confirm password</span>
+              </c-input-group> -->
+              <div class="d-grid">
+                <button cButton color="success" (click)="register()">Create Account</button>
+              </div>
+            </form>
+          </c-card-body>
+        </c-card>
+      </c-col>
+    </c-row>
+  </c-container>
+</div>
+

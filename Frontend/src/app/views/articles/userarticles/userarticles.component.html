@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col" *ngFor="let each of articles">
+      <div class="card mt-4" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"> {{ each.title }} </h5>
+          <!-- <input type="checkbox" id="vehicle1" name="id" value={{ each._id }} #del> -->
+          <h6 class="card-subtitle mb-2 text-muted"> {{ each.createdAt | date}} </h6>
+          <p class="card-text">{{ each.description | slice:0:40}}</p>
+          <!-- <a href="#" class="card-link">Card link</a> -->
+          <div class="row">
+            <div class="col">
+               <a  class="card-link" (click)=" detail(each._id)" >Continue Reading</a>
+            </div>
+            <div class="col">
+              <button class="btn btn-primary" (click)="edit(each._id)">Edit</button>
+            </div>
+            <div class="col">
+              <button class="btn btn-danger" (click)="delete(each._id)">Delete</button>
+            </div>
+            <div class="col">
+              <input type="checkbox" (change)="onChange($event, each._id)">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-grid gap-2 d-md-block">
+      <button (click)="selectdel()" class="btn btn-danger muldel" *ngIf="showdelbtn">Delete Selected</button>
+    </div>
+  </div>
